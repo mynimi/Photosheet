@@ -1,0 +1,75 @@
+//Generatl Style
+body{
+    font:{
+        family: $font_one;
+        size: $root_font_size;
+    }
+
+    line-height: $line-height;
+    color: $color;
+    background: $background;
+}
+
+img{
+    max-width: $img_max_width;
+    display: block;
+    margin: 0 auto;
+}
+
+// Containers
+.content{
+    width: $main_container_width;
+    margin: $main_container_margin_top_bottom auto;
+    max-width: $main_container_max_width;
+    box-sizing: border-box;
+    padding: $main_container_padding_top_bottom $main_container_padding_left_right;
+    border-radius: 3px;
+}
+
+footer{
+    @extend %font_two;
+    font-size: .5em;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 0px 5%;
+}
+
+/* 2.2 Text Styles */
+h1, h2, h3, h4, h5, h6{
+    @extend %font_one;
+    font-weight: 600;
+    font-style: italic;
+    padding: 5px 0px;
+}
+
+
+h5{
+    font-size: 1em;
+}
+
+h4{
+    font-size: 1.2em;
+}
+
+h3{
+    font-size: 1.4em;
+}
+
+h2{
+    font-size: 1.6em;
+}
+
+h1{
+    font-size: 1.8em;
+}
+
+a{
+    text-decoration: none;
+    transition: all 1s ease;
+    color: $linkcolor;
+
+    &:hover{
+        transition: all .3s ease;
+        color: $linkhovercolor;
+    }
+}

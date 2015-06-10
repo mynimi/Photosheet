@@ -1,0 +1,26 @@
+// Menu
+.PageList{
+    @extend %font_one;
+    font-style: italic;
+    margin: 10px 0px;
+    width: 100%;
+
+    ul{
+        list-style: none;
+        text-align: $menu_text_align;
+
+        li{
+            list-style: none;
+            display: inline-block;
+            padding: 2px 4px;
+
+            &:first-of-type{
+                padding-left: 0;
+            }
+
+            &:first-of-type{
+                padding-right: 0;
+            }
+        }
+    }
+}

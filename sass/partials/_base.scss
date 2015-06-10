@@ -1,0 +1,107 @@
+// Modules
+//-------------------------------------------------------------------------------
+@import "modules/all";
+
+
+// Settings
+//-------------------------------------------------------------------------------
+// Colors
+$color: $white;
+$background: $black;
+$linkcolor: lighten($wine, 10%);
+$linkhovercolor: complement($linkcolor);
+$description_color: lighten($black, 40%);
+$comments_bg: lighten($black, 85%);
+
+// Typography
+$font_one: $mainfont, $mainfont_fallback_one, $mainfont_fallback_two;
+$font_one_letter_spacing: 2px;
+$font_one_text_transform: normal;
+
+$font_two: $accentfont, $accentfont_fallback_one, $accentfont_fallback_two;
+$font_two_letter_spacing: 2px;
+$font_two_text_transform: uppercase;
+
+$root_font_size: 22px;
+$line-height: 1.5;
+
+// Width Settings
+$img_max_width: 100%;
+$main_container_width: 80%;
+$main_container_max_width: 1500px;
+
+// Margins
+$main_container_margin_top_bottom: 30px;
+
+// Paddings
+$main_container_padding_top_bottom: 50px;
+$main_container_padding_left_right: 7%;
+
+// Text-Aligns
+$header_text_align: center;
+$article_text_align: justify;
+$menu_text_align: center;
+
+// Borders
+$article_border: 1px solid darken($wine, 5%);
+
+// Index Page Articles
+$max_articles_per_row: 3; // Use[1, 2, 3, 4, 5]
+$index_article_margin_right: 2%;
+$index_article_margin_bottom: 20px;
+
+    //Media Queries
+    $mq_5:1480px;
+    $mq_4:1180px;
+    $mq_3:980px;
+    $mq_2:680px;
+
+    // Preview Images
+    $ratio_width: 4;
+    $ratio_height: 3;
+    $hovertint: $wine;
+
+// Extend Only
+//-------------------------------------------------------------------------------
+%clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+// @extend %clearfix
+
+%paddinghack{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+// @extend %paddinghack
+
+%visuallyhidden {
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+}
+// @extend %visuallyhidden
+
+%font_one{
+    font-family: $font_one;
+    letter-spacing: $font_one_letter_spacing;
+    text-transform: $font_one_text_transform;
+}
+
+%font_two{
+    font-family: $font_two !important;
+    letter-spacing: $font_two_letter_spacing;
+    text-transform: $font_two_text_transform;
+}
+

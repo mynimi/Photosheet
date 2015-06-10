@@ -1,0 +1,341 @@
+// SETTINGS
+//-------------------------------------------------------------------------------
+
+// Colors
+//----------
+// create new color variables here if you like
+$white: #FDFDFD;
+$black: #121212;
+$wine: #85073b;
+
+// color settings
+//----------------
+
+// basic font color
+$color: $white;
+
+// main background color
+$background: $black;
+
+// link color settings
+$linkcolor: lighten($wine, 10%);
+$linkhovercolor: complement($linkcolor);
+
+// header description color
+$description_color: lighten($black, 40%);
+
+// comments bubble background color
+$comments_bg: lighten($black, 85%);
+
+// Typography
+$mainfont: 'Crimson Text';
+$mainfont_fallback_one: 'Times New Roman';
+$mainfont_fallback_two: 'serif';
+
+$font_one: $mainfont, $mainfont_fallback_one, $mainfont_fallback_two; // do not change this variable
+$font_one_letter_spacing: 2px;
+$font_one_text_transform: normal;
+
+
+$accentfont: 'Raleway';
+$accentfont_fallback_one: 'Calibri';
+$accentfont_fallback_two: 'sans-serif';
+
+$font_two: $accentfont, $accentfont_fallback_one, $accentfont_fallback_two; // do not change this variable
+$font_two_letter_spacing: 2px;
+$font_two_text_transform: uppercase;
+
+// root font size, the other font sizes will adjust accordingly
+$root_font_size: 22px;
+
+// basic line-height
+$line-height: 1.5;
+
+// Width Settings
+//-----------------
+// max width of post images | use: [%]
+$img_max_width: 100%;
+
+// width of the main container | use:[%]
+$main_container_width: 80%;
+// max width of the main container | use: [px]
+$main_container_max_width: 1500px;
+
+// Margins
+//margin of the main container on the top and bottom | use: [px]
+$main_container_margin_top_bottom: 30px;
+
+// Paddings
+$main_container_padding_top_bottom: 50px;
+$main_container_padding_left_right: 7%;
+
+// Text-Aligns | use [center | left | right | justify]
+$header_text_align: center;
+$article_text_align: justify;
+$menu_text_align: center;
+
+// Borders
+$article_border: 1px solid darken($wine, 5%);
+
+// Index Page Articles
+//---------------------
+// In the next segment you will set up the look of the index page. You can choose how many articles will be in a row as well as the spaces between them.
+
+// the maximum amount of articles next to each other | use: [1 | 2 | 3 | 4 | 5]
+$max_articles_per_row: 3;
+
+// space between articles in a row | use: [%]
+$index_article_margin_right: 2%;
+
+// between articles in a column, because of firefox you need to use px here | use: [px]
+$index_article_margin_bottom: 20px;
+
+    //Media Queries
+// these are the breaking points for the articles. Adjust the numbers accordingly.
+
+    // point when 5 articles in a row become 4
+    $mq_5:1480px;
+
+    // point when 4 articles in a row become 3
+    $mq_4:1180px;
+
+    // point when 3 articles in a row become 2
+    $mq_3:980px;
+
+    // point when 2 articles in a row become 1
+    $mq_2:680px;
+
+    // Preview Images
+
+// set the image ratio of the article previews. for example 1:1, 16:9, 4:3
+    $ratio_width: 4;
+    $ratio_height: 3;
+
+    // the color seeping through the image on hover
+    $hovertint: $wine;
+
+//------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------
+// NO CHANGES FROM NOW ON
+//------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Mixins
+//-------------------------------------------------------------------------------
+@mixin flexbox($direction, $wrap, $justify, $align){
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+    align-items: $align;
+}
+//@include flexbox(direction, wrap, justify, align)
+
+
+// from CSS-Tricks
+@mixin rowMachine($numPerRow, $marginright, $marginbottom) {
+  width: ((100% - (($numPerRow - 1) * $marginright)) / $numPerRow);
+  &:nth-child(n) {
+    margin-bottom: $marginbottom;
+    margin-right: $marginright;
+  }
+  &:nth-child(#{$numPerRow}n) {
+    margin-right: 0;
+  }
+}
+//@include rowMachine(numPerRow, margin)
+
+@mixin paddinghack($containerwidth, $ratiowidth, $ratioheight){
+    position: relative;
+    width: $containerwidth;
+    height: 0;
+    padding: (($ratioheight / $ratiowidth) * $containerwidth) 0 0 0;
+}
+// @include(width, ratiowidth, ratioheight)
+
+// Extend Only
+//-------------------------------------------------------------------------------
+%clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+// @extend %clearfix
+
+%paddinghack{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+// @extend %paddinghack
+
+%visuallyhidden {
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+}
+// @extend %visuallyhidden
+
+%font_one{
+    font-family: $font_one;
+    letter-spacing: $font_one_letter_spacing;
+    text-transform: $font_one_text_transform;
+}
+
+%font_two{
+    font-family: $font_two !important;
+    letter-spacing: $font_two_letter_spacing;
+    text-transform: $font_two_text_transform;
+}
+
+//Generatl Style
+body{
+    font:{
+        family: $font_one;
+        size: $root_font_size;
+    }
+
+    line-height: $line-height;
+    color: $color;
+    background: $background;
+}
+
+img{
+    max-width: $img_max_width;
+}
+
+// Containers
+.content{
+    width: $main_container_width;
+    margin: $main_container_margin_top_bottom auto;
+    max-width: $main_container_max_width;
+    padding: $main_container_padding_top_bottom $main_container_padding_left_right;
+}
+
+footer{
+    @extend %font_two;
+}
+
+/* 2.2 Text Styles */
+h1, h2, h3, h4, h5, h6{
+    @extend %font_one;
+}
+
+
+a{
+    color: $linkcolor;
+
+    &:hover{
+        color: $linkhovercolor;
+    }
+}
+
+// Header
+.head{
+    text-align: $header_text_align;
+
+    h3{
+        @extend %font_two;
+        color: $description_color;
+    }
+}
+
+// Menu
+.PageList{
+    @extend %font_one;
+    ul{
+        text-align: $menu_text_align;
+    }
+}
+
+article{
+    text-align: $article_text_align;
+    border: $article_border;
+
+    header{
+        .post-date h3{
+            font: {
+                family: $font_two;
+            }
+        }
+    }
+}
+
+.index {
+    article{
+        @include rowMachine($max_articles_per_row, $index_article_margin_right, $index_article_margin_bottom);
+        @if $max_articles_per_row == 5{
+            @media screen and(max-width: $mq_5){
+                @include rowMachine(4, $index_article_margin_right, $index_article_margin_bottom);
+            }
+            @media screen and(max-width: $mq_4){
+                @include rowMachine(3, $index_article_margin_right, $index_article_margin_bottom);
+            }
+            @media screen and(max-width: $mq_3){
+                @include rowMachine(2, $index_article_margin_right, $index_article_margin_bottom);
+            }
+            @media screen and(max-width: $mq_2){
+                @include rowMachine(1, $index_article_margin_right, $index_article_margin_bottom);
+            }
+        } @else if $max_articles_per_row == 4{
+            @media screen and(max-width: $mq_4){
+                @include rowMachine(3, $index_article_margin_right, $index_article_margin_bottom);
+            }
+            @media screen and(max-width: $mq_3){
+                @include rowMachine(2, $index_article_margin_right, $index_article_margin_bottom);
+            }
+            @media screen and(max-width: $mq_2){
+                @include rowMachine(1, $index_article_margin_right, $index_article_margin_bottom);
+            }
+        } @else if $max_articles_per_row == 3{
+            @media screen and(max-width: $mq_3){
+                @include rowMachine(2, $index_article_margin_right, $index_article_margin_bottom);
+            }
+            @media screen and(max-width: $mq_2){
+                @include rowMachine(1, $index_article_margin_right, $index_article_margin_bottom);
+            }
+        } @else if $max_articles_per_row == 2{
+            @media screen and(max-width: $mq_2){
+                @include rowMachine(1, $index_article_margin_right, $index_article_margin_bottom);
+            }
+        }
+    }
+}
+
+.prev_img{
+  @include paddinghack(100%, $ratio_width, $ratio_height);
+  background-color: $hovertint;
+}
+
+.comments .comment-block,
+.comments .comment-thread.inline-thread .comment-block {
+    background: $comments_bg;
+    color: $black;
+}
+
+.comments .comment-block:after{
+    border-color: transparent $comments_bg transparent transparent;
+}
+
+.comment-header {
+    @extend %font_one;
+}
+
+.comment-actions{
+    font-family: $font_two;
+
+    a{
+        background: $white;
+    }
+}

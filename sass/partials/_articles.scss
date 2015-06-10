@@ -1,0 +1,133 @@
+// Articles
+.index .post_container{
+    @extend %clearfix;
+    @include flexbox(row, wrap, flex-start, stretch)
+}
+
+article{
+    text-align: $article_text_align;
+    padding: 20px;
+    box-sizing: border-box;
+    border: $article_border;
+
+    header{
+        line-height: 1;
+
+        .post-title h1{
+            padding: 2px 0px;
+        }
+
+        .post-date h3{
+            font: {
+                family: $font_two;
+                style: normal;
+                size: .6em;
+                weight: normal;
+            }
+
+            text-transform: uppercase;
+            border-top: 1px solid lighten($black, 80%);
+            color: lighten($black, 40%);
+        }
+
+    }
+
+    .post-author{
+        @extend %visuallyhidden;
+    }
+}
+
+.index {
+    .post_content{
+        @extend %visuallyhidden;
+    }
+
+    article{
+
+        @include rowMachine($max_articles_per_row, $index_article_margin_right, $index_article_margin_bottom);
+
+        @if $max_articles_per_row == 5{
+            @media screen and(max-width: $mq_5){
+                @include rowMachine(4, $index_article_margin_right, $index_article_margin_bottom);
+            }
+
+            @media screen and(max-width: $mq_4){
+                @include rowMachine(3, $index_article_margin_right, $index_article_margin_bottom);
+            }
+
+            @media screen and(max-width: $mq_3){
+                @include rowMachine(2, $index_article_margin_right, $index_article_margin_bottom);
+            }
+
+            @media screen and(max-width: $mq_2){
+                @include rowMachine(1, $index_article_margin_right, $index_article_margin_bottom);
+            }
+
+        } @else if $max_articles_per_row == 4{
+            @media screen and(max-width: $mq_4){
+                @include rowMachine(3, $index_article_margin_right, $index_article_margin_bottom);
+            }
+
+            @media screen and(max-width: $mq_3){
+                @include rowMachine(2, $index_article_margin_right, $index_article_margin_bottom);
+            }
+
+            @media screen and(max-width: $mq_2){
+                @include rowMachine(1, $index_article_margin_right, $index_article_margin_bottom);
+            }
+
+        } @else if $max_articles_per_row == 3{
+            @media screen and(max-width: $mq_3){
+                @include rowMachine(2, $index_article_margin_right, $index_article_margin_bottom);
+            }
+
+            @media screen and(max-width: $mq_2){
+                @include rowMachine(1, $index_article_margin_right, $index_article_margin_bottom);
+            }
+        } @else if $max_articles_per_row == 2{
+            @media screen and(max-width: $mq_2){
+                @include rowMachine(1, $index_article_margin_right, $index_article_margin_bottom);
+            }
+        }
+    }
+}
+
+.prev_img{
+  box-sizing: border-box;
+  @include paddinghack(100%, $ratio_width, $ratio_height);
+  margin: 0;
+  background-color: $hovertint;
+  &:first-of-type{
+    margin-left: 0;
+  }
+  &:last-of-type{
+    margin-right: 0;
+  }
+
+  a{
+    @extend %paddinghack;
+    display: block;
+    transition: 1s linear;
+    background: {
+//    image: url(imgURL) --> done with jQuery
+      size: cover;
+      position: center;
+    }
+
+    &:hover{
+      transition: .3s linear;
+      opacity: .6;
+    }
+
+    img{
+      display: none;
+    }
+  }
+}
+
+// Pager
+.pager{
+    @include flexbox(row-reverse, nowrap, space-between, center);
+    border-top: 1px solid lighten($black, 80%);
+    margin-top: 30px;
+}

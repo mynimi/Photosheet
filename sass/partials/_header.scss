@@ -1,0 +1,18 @@
+// Header
+.head{
+    font-size: 1.3em;
+    text-align: $header_text_align;
+    font-weight: normal;
+
+    h3{
+        @extend %font_two;
+
+        font:{
+            style: normal;
+            size: .6em;
+            weight: normal;
+        }
+
+        color: $description_color;
+    }
+}
