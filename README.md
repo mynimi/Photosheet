@@ -1,6 +1,8 @@
 # Papersheet - the subtle one
 ## responsive Blogger Template
 
+![preview](https://raw.githubusercontent.com/mynimi/Photosheet/master/photosheet.png)
+
 Photosheet ist wie sein Geschwister [Papersheet](https://github.com/mynimi/Papersheet) ein minimalistisches Template, das sich an die Leute richtet, die bei ihrem Blog Wert auf den Inhalt legen. Photosheet ist hier mehr für die Blogs gedacht, die viel mit Bildern arbeiten, denn abgesehen davon gibt es auf der Startseite nicht viel zu sehen.
 
 Dieses Template wurde mit Sass geschrieben, die Sass files sind hier zu finden. Ausserdem habe ich einen Overwrite geschrieben, mit dem Anpassungen super schnell gehen.
